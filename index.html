@@ -377,11 +377,16 @@
         </table>
     </section>
 
-
+    <audio id="effect1" src="files/ding-sound-effect_2.mp3"></audio>
+    <audio id="effect2" src="files/Bomb-Sound-Effect.mp3"></audio>
+    <audio id="effect3" src="files/nintendo-game-boy-startup.mp3"></audio>
 
 <script>
     $(document).ready(function() {
         
+        var effect1 = $('#effect1')[0];
+        var effect2 = $('#effect2')[0];
+
         $(window).on('beforeunload', function() {
                 return 'Are you sure you want to leave the page?';
         });
@@ -489,6 +494,13 @@
                     }, 280);
 
                     if(bombPositionsList.includes(itemId)) {
+                        effect2.currentTime = 0;
+	                	effect2.play();
+
+	                	setTimeout(function() {
+		                	effect2.pause();
+	                    }, 3080); 
+
                         var minesCount = $('#mines').val();
                         minesCount = parseInt(minesCount) - 1;
                         $('#mines').val(minesCount);
@@ -515,6 +527,9 @@
                         $('.messageDiv').show();
 
                     } else{
+                        effect1.currentTime = 0;
+	                	effect1.play();
+
                         var diamondsCount = $('#dimonds').val();
                         diamondsCount = parseInt(diamondsCount) - 1;
                         $('#dimonds').val(diamondsCount);
